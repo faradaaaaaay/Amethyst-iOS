@@ -24,11 +24,11 @@ jobs:
       - name: Install GNU Make
         run: brew install make
 
-      - name: Setup JDK 8
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '8'
+      - name: Install JDK 8
+        run: |
+          brew install --cask temurin@8
+          echo "JAVA_HOME=$(/usr/libexec/java_home -v 1.8)" >> $GITHUB_ENV
+          echo "$(/usr/libexec/java_home -v 1.8)/bin" >> $GITHUB_PATH
         
       - name: Remove work folders
         run: |
